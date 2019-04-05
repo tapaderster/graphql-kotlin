@@ -13,6 +13,7 @@ import com.expedia.graphql.sample.exceptions.CustomDataFetcherExceptionHandler
 import com.expedia.graphql.sample.extension.CustomSchemaGeneratorHooks
 import com.expedia.graphql.sample.mutation.Mutation
 import com.expedia.graphql.sample.query.Query
+import com.expedia.graphql.sample.subscription.Subscription
 import com.expedia.graphql.toSchema
 import graphql.GraphQL
 import graphql.execution.AsyncExecutionStrategy
@@ -62,6 +63,7 @@ class Application {
     fun schema(
         queries: List<Query>,
         mutations: List<Mutation>,
+        subscriptions: List<Subscription>,
         schemaConfig: SchemaGeneratorConfig,
         schemaPrinter: SchemaPrinter
     ): GraphQLSchema {
@@ -72,7 +74,8 @@ class Application {
         val schema = toSchema(
             config = schemaConfig,
             queries = queries.toTopLevelObjectDefs(),
-            mutations = mutations.toTopLevelObjectDefs()
+            mutations = mutations.toTopLevelObjectDefs(),
+            subscriptions = subscriptions.toTopLevelObjectDefs()
         )
 
         logger.info(schemaPrinter.print(schema))
