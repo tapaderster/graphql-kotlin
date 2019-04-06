@@ -10,6 +10,7 @@ import graphql.schema.GraphQLSchema
  * @param config Schema generation configuration
  * @param queries List of [TopLevelObject] to use for GraphQL queries
  * @param mutations List of [TopLevelObject] to use for GraphQL mutations
+ * @param subscriptions List of [TopLevelObject] to use for GraphQL subscriptions
  *
  * @return GraphQLSchema from graphql-java
  */

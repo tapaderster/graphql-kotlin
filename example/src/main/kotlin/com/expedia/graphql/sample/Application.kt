@@ -19,6 +19,7 @@ import graphql.GraphQL
 import graphql.execution.AsyncExecutionStrategy
 import graphql.execution.AsyncSerialExecutionStrategy
 import graphql.execution.DataFetcherExceptionHandler
+import graphql.execution.SubscriptionExecutionStrategy
 import graphql.schema.GraphQLSchema
 import graphql.schema.idl.SchemaPrinter
 import org.slf4j.LoggerFactory
@@ -26,6 +27,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import javax.validation.Validator
+
 
 @SpringBootApplication
 class Application {
@@ -92,6 +94,7 @@ class Application {
     ): GraphQL = GraphQL.newGraphQL(schema)
         .queryExecutionStrategy(AsyncExecutionStrategy(dataFetcherExceptionHandler))
         .mutationExecutionStrategy(AsyncSerialExecutionStrategy(dataFetcherExceptionHandler))
+        .subscriptionExecutionStrategy(SubscriptionExecutionStrategy(dataFetcherExceptionHandler))
         .build()
 }
 
